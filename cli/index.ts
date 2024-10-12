@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { render } from '@react-email/components';
 import { Command } from 'commander';
 import fs from 'fs';
