@@ -9,4 +9,10 @@ npm ci
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [localhost:3000](http://localhost:3000) with your browser to see email previews.
+
+Run the following to use the CLI:
+
+```sh
+node ./dist/cli/index.js
+```

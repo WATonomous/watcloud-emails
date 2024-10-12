@@ -1,5 +1,7 @@
 import { render } from '@react-email/components';
 import { Command } from 'commander';
+import fs from 'fs';
+
 const program = new Command();
 
 program
@@ -9,14 +11,28 @@ program
 program
     .command('generate <template_name>')
     .description('Generate an email from a template')
-    .action(async (template_name) => {
-        console.log(`Generating email from template ${template_name}`);
-
+    .option('-d, --data <data>', 'Data to pass to the template')
+    .option('-o, --output <output>', 'Output file')
+    .option('-p, --pretty', 'Pretty print the output')
+    .option('-t, --text', 'Generate plain text output')
+    .action(async (template_name, options) => {
         const template = require(`../emails/${template_name}`).default;
 
-        const html = await render(template({}))
+        let data = {};
+        if (options.data) {
+            data = JSON.parse(options.data);
+        }
 
-        console.log(html);
+        const out = await render(template(data), {
+            pretty: options.pretty,
+            plainText: options.text,
+        })
+
+        if (options.output) {
+            fs.writeFileSync(options.output, out);
+        } else {
+            console.log(out);
+        }
     });
 
 program.parse();

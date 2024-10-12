@@ -15,12 +15,12 @@ import dedent from "dedent-js";
 import * as React from "react";
 
 interface WATcloudOnboardingEmailProps {
-    username: string;
+    name: string;
     services: string[];
 }
 
 export const WATcloudOnboardingEmail = ({
-    username,
+    name,
     services = [],
 }: WATcloudOnboardingEmailProps) => {
     const previewText = `Welcome to WATcloud!`;
@@ -43,7 +43,7 @@ export const WATcloudOnboardingEmail = ({
                             Welcome to WATcloud!
                         </Heading>
                         <Text className="text-black text-[14px] leading-[24px]">
-                            Hi {username},
+                            Hi {name},
                         </Text>
                         <Text className="text-black text-[14px] leading-[24px] mt-[10px]">
                             Welcome to WATcloud, WATonomous's compute cluster and infrastructure. We are excited to have you on board!
@@ -98,7 +98,7 @@ export const WATcloudOnboardingEmail = ({
 };
 
 WATcloudOnboardingEmail.PreviewProps = {
-    username: "John Doe",
+    name: "John Doe",
     services: ["Compute Cluster", "Discord", "Google Workspace"],
 } as WATcloudOnboardingEmailProps;
 
