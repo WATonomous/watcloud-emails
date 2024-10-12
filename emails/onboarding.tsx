@@ -13,16 +13,18 @@ import {
 } from "@react-email/components";
 import dedent from "dedent-js";
 import * as React from "react";
+import { z } from "zod";
 
-interface WATcloudOnboardingEmailProps {
-    name: string;
-    services: string[];
-}
+const WATcloudOnboardingEmailProps = z.object({
+    name: z.string(),
+    services: z.array(z.string()),
+});
 
-export const WATcloudOnboardingEmail = ({
-    name,
-    services = [],
-}: WATcloudOnboardingEmailProps) => {
+type WATcloudOnboardingEmailProps = z.infer<typeof WATcloudOnboardingEmailProps>;
+
+export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => {
+    const { name, services } = WATcloudOnboardingEmailProps.parse(props);
+
     const previewText = `Welcome to WATcloud!`;
     const accessInstructions = (
         <ul className="text-black text-[14px] leading-[24px]">
