@@ -1,5 +1,6 @@
 {
   "name": "@watonomous/watcloud-emails",
+  "version": "0.0.2",
   "bin": {
     "watcloud-emails": "dist/cli/index.js"
   },

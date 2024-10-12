@@ -25,9 +25,7 @@ jobs:
     - run: npm run build
     - run: cat /home/runner/work/_temp/.npmrc
     - name: Publish to GitHub Packages
-      if: github.event_name == 'release'
-      run: |
-        npm version from-git --no-git-tag-version
-        npm publish --verbos
+      run: 
+        npm publish --verbose
       env:
         NODE_AUTH_TOKEN: ${{github.token}}
