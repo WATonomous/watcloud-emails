@@ -1,7 +1,9 @@
 {
   "name": "watcloud-emails",
   "version": "0.0.1",
-  "bin": "./dist/cli/index.js",
+  "bin": {
+    "watcloud-emails": "dist/cli/index.js"
+  },
   "files": [
     "dist"
   ],
