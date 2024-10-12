@@ -38,6 +38,32 @@ program
     });
 
 program
+    .command('generate-bulk <template_name>')
+    .description('Generate multiple emails from a template')
+    .option('-d, --data <data>', 'Data to pass to the template. Should be a JSON array of objects')
+    .option('-o, --output <output>', 'Output file. A JSON array of HTML and text emails will be written to this file')
+    .action(async (template_name, options) => {
+        const template = require(`../emails/${template_name}`).default;
+
+        let data = [];
+        if (options.data) {
+            data = JSON.parse(options.data);
+        }
+
+        const out = await Promise.all(data.map(async (d: any) => ({
+            html: await render(template(d)),
+            text: await render(template(d), { plainText: true }),
+        })));
+
+        if (options.output) {
+            fs.writeFileSync(options.output, JSON.stringify(out));
+        } else {
+            console.log(JSON.stringify(out, null, 2));
+        }
+    });
+
+
+program
     .command('list')
     .description('List all available templates')
     .action(() => {
