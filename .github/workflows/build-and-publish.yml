@@ -7,25 +7,41 @@ on:
     branches:
     - main
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      # write is required to write to releases
+      contents: write
     steps:
     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
     - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
       with:
         node-version: '20.x'
-        registry-url: 'https://npm.pkg.github.com'
-    - run: npm ci
-    - run: npm run build
-    - run: cat /home/runner/work/_temp/.npmrc
-    - name: Publish to GitHub Packages
-      run: 
-        npm publish --verbose --access public
-      env:
-        NODE_AUTH_TOKEN: ${{github.token}}
+    - name: Install Dependencies
+      run: npm ci
+    - name: Build
+      run: npm run build
+    - name: Create Package
+      run: |
+        if npm version --no-git-tag-version from-git > /dev/null 2>&1; then
+          echo "Using auto version based on git tag"
+        else
+          echo "Using version 0.0.0-dev"
+          npm version --no-git-tag-version 0.0.0-dev
+        fi
+        mkdir out
+        npm pack --pack-destination out
+    - name: Upload build artifact
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+      with:
+        name: package
+        path: out/*.tgz
+    - name: Attach build artifact to release
+      if: github.event_name == 'release'
+      uses: softprops/action-gh-release@c062e08bd532815e2082a85e87e3ef29c3e6d191 # 2.0.8
+      with:
+        files: out/*.tgz
+    
