@@ -26,6 +26,6 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: cat /home/runner/work/_temp/.npmrc
-    - run: npm publish --access public
+    - run: npm publish --dry-run --verbose --access public
       env:
         NODE_AUTH_TOKEN: ${{github.token}}
