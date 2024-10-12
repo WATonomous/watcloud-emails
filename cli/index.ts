@@ -35,4 +35,16 @@ program
         }
     });
 
+program
+    .command('list')
+    .description('List all available templates')
+    .action(() => {
+        const files = fs.readdirSync(__dirname + '/../emails');
+        const templates = files.map((file) => file.replace(/\.jsx?$|\.tsx?$/, ''));
+        console.log('Available templates:');
+        for (const template of templates) {
+            console.log(template);
+        }
+    });
+
 program.parse();
