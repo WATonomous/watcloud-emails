@@ -15,8 +15,8 @@ import dedent from "dedent-js";
 import * as React from "react";
 
 interface WATcloudOnboardingEmailProps {
-    username?: string;
-    services?: string[];
+    username: string;
+    services: string[];
 }
 
 export const WATcloudOnboardingEmail = ({
