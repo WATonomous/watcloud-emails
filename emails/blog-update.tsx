@@ -50,9 +50,8 @@ export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Img src={imageSrc} alt={title} height="200" />
             <Link href={link}>
-                <Heading as="h3" style={{ marginBottom: 0 }}>{title}</Heading>
+                <Heading as="h2" style={{ marginBottom: 0 }}>{title}</Heading>
             </Link>
-            {/* subtitle */}
             <Text style={{ color: "#333", marginTop: 0 }}>
                 By {author} on {date}
             </Text>
