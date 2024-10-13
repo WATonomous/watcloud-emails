@@ -92,9 +92,45 @@ export class WATcloudURI extends URL {
 
         return ret
     }
+
+    equals(other: WATcloudURI) {
+        return this.toString() === other.toString();
+    }
 }
 
 // Resolve all assets. This can also be used to prewarm the cache.
 export function resolveAll(assets: WATcloudURI[]) {
     return Promise.all(assets.map((asset) => asset.resolveToURL()));
+}
+
+// MARK: Asset registration
+// This section contains code for the asset registration system.
+// This system allows for assets to be resolved synchronously.
+// Usage:
+// 1. Register assets using `registerAsset(name, uri)`.
+// 2. Wait for all assets to resolve using `await waitForAssets()`.
+// 3. Get an asset using `getAsset(name)`.
+
+const assets = new Map<string, WATcloudURI>();
+const assetResolverPromises = new Map<string, Promise<string>>();
+
+// Register an asset with a name and a URI. This will also start resolving the asset.
+// To wait for all assets to resolve, `await waitForAssets()` after all assets have been registered.
+export function registerAsset(name: string, uri: WATcloudURI) {
+    if (assets.has(name) && !assets.get(name)!.equals(uri)) {
+        throw new Error(`Asset ${name} is already registered with a different URI (${assets.get(name)!.toString()}). Cannot add asset with URI ${uri.toString()}.`);
+    }
+    assets.set(name, uri);
+    assetResolverPromises.set(name, uri.resolveToURL());
+}
+
+export function getAsset(name: string) {
+    if (!assets.has(name)) {
+        throw new Error(`Asset ${name} is not registered.`);
+    }
+    return assets.get(name)!;
+}
+
+export function waitForAssets() {
+    return Promise.all(assetResolverPromises.values());
 }

@@ -3,7 +3,7 @@
 import { render } from '@react-email/components';
 import { Command } from 'commander';
 import fs from 'fs';
-import { resolveAll } from '../utils/watcloud-uri';
+import { waitForAssets } from '../utils/watcloud-uri';
 
 const program = new Command();
 
@@ -19,14 +19,8 @@ program
     .option('-p, --pretty', 'Pretty print the output')
     .option('-t, --text', 'Generate plain text output')
     .action(async (template_name, options) => {
-        const mod = require(`../emails/${template_name}`);
-        const template = mod.default;
-
-        const images = mod.images;
-        if (images) {
-            // Preload all images
-            await resolveAll(Object.values(images));
-        }
+        const template = require(`../emails/${template_name}`).default;
+        await waitForAssets();
 
         let data = {};
         if (options.data) {
@@ -51,14 +45,8 @@ program
     .option('-d, --data <data>', 'Data to pass to the template. Should be a JSON array of objects')
     .option('-o, --output <output>', 'Output file. A JSON array of HTML and text emails will be written to this file')
     .action(async (template_name, options) => {
-        const mod = require(`../emails/${template_name}`);
-        const template = mod.default;
-
-        const images = mod.images;
-        if (images) {
-            // Preload all images
-            await resolveAll(Object.values(images));
-        }
+        const template = require(`../emails/${template_name}`).default;
+        await waitForAssets();
 
         let data = [];
         if (options.data) {
