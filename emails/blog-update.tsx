@@ -1,20 +1,13 @@
 import {
-    Body,
-    Container,
-    Head,
     Heading,
     Hr,
-    Html,
     Img,
     Link,
-    Preview,
-    Section,
     Text
 } from "@react-email/components";
-import dedent from "dedent-js";
 import { z } from "zod";
-import { WATcloudEmail } from "./_common/watcloud-email";
 import { getAsset, registerAsset, WATcloudURI } from "../utils/watcloud-uri";
+import { WATcloudEmail } from "./_common/watcloud-email";
 
 const WATcloudBlogUpdateEmailProps = z.object({
     path: z.string(),

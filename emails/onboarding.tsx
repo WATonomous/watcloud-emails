@@ -1,11 +1,6 @@
 import {
-    Body,
-    Container,
-    Head,
-    Html,
-    Img,
+    Hr,
     Link,
-    Preview,
     Section,
     Text
 } from "@react-email/components";
@@ -25,7 +20,7 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
 
     const previewText = `Welcome to WATcloud! Your access has been updated.`;
     const accessInstructions = (
-        <ul style={{ color: "#000", fontSize: "14px", lineHeight: "24px" }}>
+        <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
             {services?.map((service) => (
                 <li key={service}>{service}</li>
             ))}
@@ -34,28 +29,26 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
 
     return (
         <WATcloudEmail previewText={previewText}>
-            <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px" }}>
-                Hi {name},
-            </Text>
-            <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "10px" }}>
+            <Text>Hi {name},</Text>
+            <Text>
                 Welcome to WATcloud, WATonomous's compute cluster and infrastructure. We are excited to have you on board!
             </Text>
-            <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "10px" }}>
+            <Text>
                 This email confirms that your access to WATcloud has been successfully updated.
             </Text>
-            <Section style={{ marginTop: "20px", marginBottom: "20px" }}>
-                <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px" }}>
-                    Here's a list of services that you have access to:
-                </Text>
+            <Hr />
+            <Section>
+                <Text>Here's a list of services that you have access to:</Text>
                 {accessInstructions}
-                <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "10px" }}>
+                <Text>
                     Access instructions for each service can be found in the <Link href="https://cloud.watonomous.ca/docs/services" style={{ color: "#1e90ff", textDecoration: "none" }}>Services</Link> documentation.
                 </Text>
             </Section>
-            <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "10px" }}>
+            <Hr />
+            <Text>
                 If you have any questions, please reach out to your <Link href="https://cloud.watonomous.ca/docs/services#watcloud-contact" style={{ color: "#1e90ff", textDecoration: "none" }}>WATcloud contact</Link> or the WATcloud team at <Link href={`mailto:infra-outreach@watonomous.ca`} style={{ color: "#1e90ff", textDecoration: "none" }}>infra-outreach@watonomous.ca</Link>.
             </Text>
-            <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "20px" }}>
+            <Text>
                 Vroom vroom,
             </Text>
             <pre style={{ fontFamily: "Courier New, monospace" }}>
