@@ -8,10 +8,10 @@ import { waitForAssets } from '../utils/watcloud-uri';
 const program = new Command();
 
 // Returns the email template with the given name and performs any necessary initialization.
-async function getTemplate(template_name: string) {
+async function getTemplate(template_name: string, props_array: any[] = []) {
     const mod = require(`../emails/${template_name}`);
     if (mod.init) {
-        await mod.init();
+        await Promise.all(props_array.map(mod.init));
     }
     await waitForAssets();
 
@@ -30,12 +30,12 @@ program
     .option('-p, --pretty', 'Pretty print the output')
     .option('-t, --text', 'Generate plain text output')
     .action(async (template_name, options) => {
-        const template = await getTemplate(template_name);
-
         let data = {};
         if (options.data) {
             data = JSON.parse(options.data);
         }
+
+        const template = await getTemplate(template_name, [data]);
 
         const out = await render(template(data), {
             pretty: options.pretty,
@@ -55,12 +55,12 @@ program
     .option('-d, --data <data>', 'Data to pass to the template. Should be a JSON array of objects')
     .option('-o, --output <output>', 'Output file. A JSON array of HTML and text emails will be written to this file')
     .action(async (template_name, options) => {
-        const template = await getTemplate(template_name);
-
         let data = [];
         if (options.data) {
             data = JSON.parse(options.data);
         }
+
+        const template = await getTemplate(template_name, data);
 
         const out = await Promise.all(data.map(async (d: any) => ({
             html: await render(template(d)),
