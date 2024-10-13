@@ -11,7 +11,7 @@ import { getAsset, registerAsset, WATcloudURI } from "../utils/watcloud-uri";
 import { WATcloudEmail } from "./_common/watcloud-email";
 
 const WATcloudBlogUpdateEmailProps = z.object({
-    path: z.string(),
+    url: z.string().url(),
     title: z.string(),
     author: z.string(),
     date: z.string(),
@@ -26,15 +26,13 @@ export function init({ image }: WATcloudBlogUpdateEmailProps) {
 }
 
 export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
-    const { path, title, author, date, abstract, image } = WATcloudBlogUpdateEmailProps.parse(props);
+    const { url, title, author, date, abstract, image } = WATcloudBlogUpdateEmailProps.parse(props);
 
     if (process.env.NODE_ENV === "development") {
         init(props);
     }
 
     const previewText = `New WATcloud Blog Post: ${title}`;
-
-    const link = `https://cloud.watonomous.ca/blog/${path}`;
 
     const imageSrc = getAsset(image).resolveFromCache();
 
@@ -43,14 +41,14 @@ export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
             <Text>Hello! WATcloud has published a new blog post.</Text>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Img src={imageSrc} alt={title} height="200" />
-            <Link href={link}>
+            <Link href={url}>
                 <Heading as="h2" style={{ marginBottom: 0 }}>{title}</Heading>
             </Link>
             <Text style={{ marginTop: 0 }}>
                 By {author} on {date}
             </Text>
             <Markdown markdownContainerStyles={{ color: "#333", fontSize: "14px", lineHeight: "24px" }}>{abstract}</Markdown>
-            <Link href={link}>Read more →</Link>
+            <Link href={url}>Read more →</Link>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Text style={{ color: "#666", fontSize: "12px" }}>You are receiving this email because you are subscribed to the WATcloud blog.</Text>
         </WATcloudEmail>
@@ -58,7 +56,7 @@ export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
 };
 
 WATcloudBlogUpdateEmail.PreviewProps = {
-    path: "what-is-watcloud",
+    url: "https://cloud.watonomous.ca/blog/what-is-watcloud",
     title: "Under the Hood: What is WATcloud?",
     author: "Ben Zhang",
     date: "Sunday, September 22, 2024",
