@@ -67,9 +67,7 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
                     ${"`"}.(o)-----(o).'
                 `)}
             </pre>
-            <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "10px" }}>
-                WATcloud Onboarding Bot 🤖
-            </Text>
+            <Text>WATcloud Onboarding Bot 🤖</Text>
         </WATcloudEmail>
     );
 };
