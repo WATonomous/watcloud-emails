@@ -58,9 +58,36 @@ export class WATcloudURI extends URL {
     }
 
     resolveFromCache() {
-        const ret = assetCache.get(this.sha256);
+        let ret = assetCache.get(this.sha256);
         if (!ret) {
-            throw new Error(`Asset ${this.sha256} not found in the cache.`);
+            // If we are in development mode, serve the asset using the dev server
+            if (process.env.NODE_ENV === "development") {
+                const fs = require('fs');
+                const path = require('path');
+                const { Readable } = require('stream');
+
+                const staticCachePath = path.resolve(__dirname, "../emails/static/cache");
+                const filename = this.sha256;
+                const filepath = path.join(staticCachePath, filename);
+
+                if (!fs.existsSync(filepath)) {
+                    if (!fs.existsSync(staticCachePath)) {
+                        fs.mkdirSync(staticCachePath, { recursive: true });
+                    }
+                    this.resolveToURL().then((url) => {
+                        fetch(url).then((res) => {
+                            const dest = fs.createWriteStream(filepath);
+                            if (res.body) {
+                                Readable.from(res.body).pipe(dest);
+                            }
+                        })
+                    })
+                }
+
+                ret = `${process.env.CDN_URL || ""}/static/cache/${filename}`;
+            } else {
+                throw new Error(`Asset ${this.sha256} not found in the cache.`);
+            }
         }
 
         return ret
