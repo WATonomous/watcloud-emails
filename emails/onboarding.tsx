@@ -11,10 +11,11 @@ import {
 } from "@react-email/components";
 import dedent from "dedent-js";
 import { z } from "zod";
+import { WATcloudURI } from "../utils/watcloud-uri";
 
-// TODO: resolve this using the SDK
-// watcloud://v1/sha256:393767e36d5387815c15d11c506c3c820de5db41723ffc062751673621dedb15?name=1024x512%20black%401x.png
-const HEADER_IMAGE_URL = "https://rgw.watonomous.ca/asset-temp/393767e36d5387815c15d11c506c3c820de5db41723ffc062751673621dedb15"
+export const images = {
+    'watcloud-logo': new WATcloudURI("watcloud://v1/sha256:393767e36d5387815c15d11c506c3c820de5db41723ffc062751673621dedb15?name=1024x512%20black%401x.png")
+}
 
 const WATcloudOnboardingEmailProps = z.object({
     name: z.string(),
@@ -41,7 +42,7 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
             <Preview>{previewText}</Preview>
             <Body style={{ backgroundColor: "#ffffff", margin: "auto", fontFamily: "sans-serif" }}>
                 <Container style={{ border: "1px solid #eaeaea", borderRadius: "5px", margin: "40px auto", padding: "20px", maxWidth: "600px" }}>
-                    <Img src={HEADER_IMAGE_URL} alt="WATcloud Logo" style={{ display: "block", margin: "0 auto" }} height="100" />
+                    <Img src={images['watcloud-logo'].resolveFromCache()} alt="WATcloud Logo" style={{ display: "block", margin: "0 auto" }} height="100" />
                     <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px" }}>
                         Hi {name},
                     </Text>
