@@ -117,8 +117,14 @@ const assetResolverPromises = new Map<string, Promise<string>>();
 // Register an asset with a name and a URI. This will also start resolving the asset.
 // To wait for all assets to resolve, `await waitForAssets()` after all assets have been registered.
 export function registerAsset(name: string, uri: WATcloudURI) {
-    if (assets.has(name) && !assets.get(name)!.equals(uri)) {
-        throw new Error(`Asset ${name} is already registered with a different URI (${assets.get(name)!.toString()}). Cannot add asset with URI ${uri.toString()}.`);
+    if (assets.has(name)) {
+        const asset = assets.get(name)!;
+        if (asset.equals(uri)) {
+            // already registered
+            return;
+        } else {
+            throw new Error(`Asset ${name} is already registered with a different URI (${!asset.toString()}). Cannot add asset with URI ${uri.toString()}.`);
+        }
     }
     assets.set(name, uri);
     assetResolverPromises.set(name, uri.resolveToURL());

@@ -22,7 +22,7 @@ export function WATcloudEmail({
         <Html>
             <Head />
             <Preview>{previewText}</Preview>
-            <Body style={{ backgroundColor: "#ffffff", margin: "auto", fontFamily: "sans-serif" }}>
+            <Body style={{ backgroundColor: "#ffffff", color: "#333", margin: "auto", fontFamily: "sans-serif" }}>
                 <Container style={{ border: "1px solid #eaeaea", borderRadius: "5px", margin: "40px auto", padding: "20px", maxWidth: "600px" }}>
                     <Img src={getAsset('watcloud-logo').resolveFromCache()} alt="WATcloud Logo" style={{ display: "block", margin: "0 auto" }} height="100" />
                     {children}

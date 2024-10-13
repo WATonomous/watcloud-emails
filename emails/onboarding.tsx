@@ -60,12 +60,12 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
             </Text>
             <pre style={{ fontFamily: "Courier New, monospace" }}>
                 {dedent(String.raw`
-                                _∩_
-                              __|_|_
-                             /|__|__\____
-                            |            |
-                            ${"`"}.(o)-----(o).'
-                        `)}
+                        _∩_
+                      __|_|_
+                     /|__|__\____
+                    |            |
+                    ${"`"}.(o)-----(o).'
+                `)}
             </pre>
             <Text style={{ color: "#000", fontSize: "14px", lineHeight: "24px", marginTop: "10px" }}>
                 WATcloud Onboarding Bot 🤖
