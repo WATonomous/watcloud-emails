@@ -3,6 +3,7 @@ import {
     Hr,
     Img,
     Link,
+    Markdown,
     Text
 } from "@react-email/components";
 import { z } from "zod";
@@ -45,12 +46,10 @@ export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
             <Link href={link}>
                 <Heading as="h2" style={{ marginBottom: 0 }}>{title}</Heading>
             </Link>
-            <Text style={{ color: "#333", marginTop: 0 }}>
+            <Text style={{ marginTop: 0 }}>
                 By {author} on {date}
             </Text>
-            <Text style={{ color: "#333" }}>
-                {abstract}
-            </Text>
+            <Markdown markdownContainerStyles={{ color: "#333", fontSize: "14px", lineHeight: "24px" }}>{abstract}</Markdown>
             <Link href={link}>Read more →</Link>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Text style={{ color: "#666", fontSize: "12px" }}>You are receiving this email because you are subscribed to the WATcloud blog.</Text>
