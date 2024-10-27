@@ -8,7 +8,7 @@ import {
 } from "@react-email/components";
 import { z } from "zod";
 import { getAsset, registerAsset, WATcloudURI } from "../utils/watcloud-uri";
-import { Email } from "./_common/watcloud-email";
+import { WATcloudEmail } from "./_common/watcloud-email";
 
 const WATcloudBlogUpdateEmailProps = z.object({
     url: z.string().url(),
@@ -37,7 +37,7 @@ export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
     const imageSrc = getAsset(image).resolveFromCache();
 
     return (
-        <Email previewText={previewText}>
+        <WATcloudEmail previewText={previewText}>
             <Text>Hello! WATcloud has published a new blog post.</Text>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Img src={imageSrc} alt={title} height="200" />
@@ -51,7 +51,7 @@ export function WATcloudBlogUpdateEmail(props: WATcloudBlogUpdateEmailProps) {
             <Link href={url}>Read more →</Link>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Text style={{ color: "#666", fontSize: "12px" }}>You are receiving this email because you are subscribed to the WATcloud blog.</Text>
-        </Email>
+        </WATcloudEmail>
     );
 };
 
