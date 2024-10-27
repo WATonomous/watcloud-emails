@@ -23,7 +23,7 @@ const Email = (props: EmailProps) => {
 
     const expiredPaths = (
         <div>
-            <ul>
+            <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
                 {paths.map(path => (
                     <li key={path}>{path}</li>
                 ))}
@@ -35,7 +35,8 @@ const Email = (props: EmailProps) => {
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days.            </Text>
+                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days.            
+            </Text>
             <Hr />
             <Section>
                 <Text>The following paths on each respective machine are expired:</Text>
