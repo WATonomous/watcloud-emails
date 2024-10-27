@@ -6,7 +6,7 @@ import {
 } from "@react-email/components";
 import dedent from "dedent-js";
 import { z } from "zod";
-import { WATcloudEmail } from "./_common/watcloud-email";
+import { Email } from "./_common/watcloud-email";
 
 const WATcloudOnboardingEmailProps = z.object({
     name: z.string(),
@@ -28,7 +28,7 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
     )
 
     return (
-        <WATcloudEmail previewText={previewText}>
+        <Email previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
                 Welcome to WATcloud, WATonomous's compute cluster and infrastructure. We are excited to have you on board!
@@ -61,7 +61,7 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
                 `)}
             </pre>
             <Text>WATcloud Onboarding Bot 🤖</Text>
-        </WATcloudEmail>
+        </Email>
     );
 };
 
