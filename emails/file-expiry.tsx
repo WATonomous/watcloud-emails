@@ -17,9 +17,9 @@ const EmailProps = z.object({
 type EmailProps = z.infer<typeof EmailProps>;
 
 const Email = (props: EmailProps) => {
-    const { name, paths, daysForExpiry, deletionDate} = EmailProps.parse(props);
+    const { name, paths, daysForExpiry, deletionDate } = EmailProps.parse(props);
 
-    const previewText = `You have expired files in the WATO drives`;
+    const previewText = `Some of your files in the WATcloud compute cluster are expiring soon`;
 
     const expiredPaths = (
         <div>
@@ -35,16 +35,17 @@ const Email = (props: EmailProps) => {
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days.            
+                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days.
             </Text>
             <Hr />
             <Section>
-                <Text>The following paths on each respective machine are expired:</Text>
+                <Text>The following paths are expired:</Text>
                 {expiredPaths}
             </Section>
             <Hr />
             <Text style={{ fontWeight: 'bold' }}>
-                If you do not access files in any of these directories, then they will be automatically deleted on {deletionDate}.            </Text>
+                If you do not access files in any of these directories, then they will be automatically deleted on {deletionDate}.            
+            </Text>
             <Text>
                 If you have any questions, please reach out to your <Link href="https://cloud.watonomous.ca/docs/services#watcloud-contact" style={{ color: "#1e90ff", textDecoration: "none" }}>WATcloud contact</Link> or the WATcloud team at <Link href={`mailto:infra-outreach@watonomous.ca`} style={{ color: "#1e90ff", textDecoration: "none" }}>infra-outreach@watonomous.ca</Link>.
             </Text>
@@ -54,8 +55,8 @@ const Email = (props: EmailProps) => {
 
 Email.PreviewProps = {
     name: "John Doe",
-    paths: ["delta-ubuntu2:/var/lib/cluster/users/1234/docker",  "delta-ubuntu2:/var/lib/cluster/users/1234/containers", "tr-ubuntu3:/var/lib/cluster/users/1234/containers","/mnt/wato-drive2/someuser", "/mnt/wato-drive2/other"],
-    daysForExpiry: "70", 
+    paths: ["delta-ubuntu2:/var/lib/cluster/users/1234/docker", "delta-ubuntu2:/var/lib/cluster/users/1234/containers", "tr-ubuntu3:/var/lib/cluster/users/1234/containers", "/mnt/wato-drive2/someuser", "/mnt/wato-drive2/other"],
+    daysForExpiry: "70",
     deletionDate: "2025-01-01"
 } as EmailProps;
 
