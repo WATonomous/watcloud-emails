@@ -16,11 +16,11 @@ const EmailProps = z.object({
 type EmailProps = z.infer<typeof EmailProps>;
 
 const Email = (props: EmailProps) => {
-    const { name, paths, daysForExpiry} = EmailProps.parse(props);
+    const { name, paths, daysForExpiry } = EmailProps.parse(props);
 
     const previewText = `Some of your files in the WATcloud compute cluster have been deleted.`;
 
-    const expiredPaths = (
+    const deletedPaths = (
         <div>
             <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
                 {paths.map(path => (
@@ -34,15 +34,14 @@ const Email = (props: EmailProps) => {
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days. We previously sent an email that you had files which met this criteria. Since they were not accessed by the given deadline, those files have been deleted. 
+                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days. We previously sent an email that you had files which met this criteria. Since they were not accessed by the given deadline, those files have been deleted.
             </Text>
             <Hr />
             <Section>
                 <Text>The following paths were deleted:</Text>
-                {expiredPaths}
+                {deletedPaths}
             </Section>
             <Hr />
-        
             <Text>
                 If you have any questions, please reach out to your <Link href="https://cloud.watonomous.ca/docs/services#watcloud-contact" style={{ color: "#1e90ff", textDecoration: "none" }}>WATcloud contact</Link> or the WATcloud team at <Link href={`mailto:infra-outreach@watonomous.ca`} style={{ color: "#1e90ff", textDecoration: "none" }}>infra-outreach@watonomous.ca</Link>.
             </Text>
