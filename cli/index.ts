@@ -34,7 +34,7 @@ program
         if (options.data) {
             if (options.data === '-') {
                 // Read from stdin
-                data = JSON.parse(fs.readFileSync(0, 'utf-8'));
+                data = JSON.parse(fs.readFileSync('/dev/stdin', 'utf-8'));
             } else {
                 data = JSON.parse(options.data);
             }
@@ -64,7 +64,7 @@ program
         if (options.data) {
             if (options.data === '-') {
                 // Read from stdin
-                data = JSON.parse(fs.readFileSync(0, 'utf-8'));
+                data = JSON.parse(fs.readFileSync('/dev/stdin', 'utf-8'));
             } else {
                 data = JSON.parse(options.data);
             }
