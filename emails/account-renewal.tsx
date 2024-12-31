@@ -32,7 +32,7 @@ export function Email(props: EmailProps) {
         targetEmails
     } = EmailProps.parse(props);
 
-    const previewText = `Reminder: WATcloud access expires on ${expiresOn} (in ${daysUntilExpiry} days)`;
+    const previewText = `Reminder: ${name}, your WATcloud access expires on ${expiresOn} (in ${daysUntilExpiry} days)`;
 
     return (
         <WATcloudEmail previewText={previewText}>
