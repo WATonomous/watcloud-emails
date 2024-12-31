@@ -15,6 +15,7 @@ const EmailProps = z.object({
     expiresOn: z.string(),
     daysUntilExpiry: z.number(),
     renewalLink: z.string(),
+    expiryLink: z.string(),
     expiryDetails: z.string(),
     targetEmails: z.array(z.string()),
 });
@@ -28,6 +29,7 @@ export function Email(props: EmailProps) {
         expiresOn,
         daysUntilExpiry,
         renewalLink,
+        expiryLink,
         expiryDetails,
         targetEmails
     } = EmailProps.parse(props);
@@ -44,9 +46,13 @@ export function Email(props: EmailProps) {
             <Text>
                 Your last active term was <span style={{ fontWeight: "bold" }}> {lastActiveTerm}</span>. To renew your access, please update your selection for "Active Terms" at <Link href={renewalLink}>this link</Link>.
             </Text>
+            <Text>
+                You may receive additional reminders as the expiry date approaches.
+                If you would like to revoke your access earlier, please submit <Link href={expiryLink}>this prepopulated form</Link>.
+            </Text>
 
             <Text>
-                On expiry, the following changes will be made:
+                On expiry, your services will be affected as follows:
             </Text>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Markdown markdownContainerStyles={{ color: "#333", fontSize: "14px", lineHeight: "24px" }}>{expiryDetails}</Markdown>
@@ -63,37 +69,62 @@ Email.PreviewProps = {
     lastActiveTerm: "2024 Fall (2024-09-01 to 2024-12-31)",
     expiresOn: "2025-01-31",
     daysUntilExpiry: 30,
-    renewalLink: "https://example.com",
+    renewalLink: "https://example.com/renew",
+    expiryLink: "https://example.com/expire",
     expiryDetails: `
-**WATcloud Compute Cluster**
+**Azure (WATonomous)**
 
-Your access to the Compute Cluster will be disabled and the following data will be deleted:
+Your access to the Azure organization will be removed.
+
+
+**Compute Cluster**
+
+Your access to the compute cluster will be disabled and the following data will be deleted:
 - Home directory (shared between all machines): \`/home/johndoe\`
 - Container directory (on each login node): \`/var/lib/cluster/users/1234\`
 
 Data stored in shared directories such as \`/scratch\` and \`/mnt/wato-drive*\` under your account may be deleted in the future when we perform routine maintenance on the cluster.
 
-**GitHub (WATonomous)**
-
-Your role in the WATonomous GitHub organization will change from \`Owner\` to \`Member\`.
-
-**Google Workspace (WATonomous)**
-
-No changes will be made to your Google Workspace account. You will still have access to your email, calendar, and other Google Workspace services.
 
 **Discord (WATonomous)**
 
 The following roles will be removed from your Discord account on the WATonomous server:
 - Core Member
-- WATcloud Lead
+- WATcloud
+- Admin
 
 The following roles will be added:
 - Alumni
-- Alumni Board Member
 
-**Azure (WATonomous)**
 
-Your Azure account will be deleted.
+**GitHub (WATonomous)**
+
+Your access to the GitHub organization will be removed.
+
+
+**Google Workspace (WATonomous)**
+
+No changes will be made to your Google Workspace account. You will still have access to your email, calendar, and other Google Workspace services.
+
+
+**Grafana (WATonomous)**
+
+Your access to the Grafana instance will be removed.
+
+
+**WATcloud Internal Tools**
+
+Your access to WATcloud internal tools will be disabled.
+
+
+**Sentry (WATonomous)**
+
+Your access to the Sentry organization will be removed.
+
+
+**WATcloud Public Profile**
+
+No changes will be made to your WATcloud public profile.
     `,
     targetEmails: ["john.doe@example.com", "john.doe2@example2.com"],
 } as EmailProps;
