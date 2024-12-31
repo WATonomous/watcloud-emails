@@ -34,9 +34,7 @@ program
         if (options.data) {
             if (options.data === '-') {
                 // Read from stdin
-                const dataraw = fs.readFileSync(0, 'utf-8');
-                console.log("dataraw", dataraw);
-                data = JSON.parse(dataraw);
+                data = JSON.parse(fs.readFileSync(0, 'utf-8'));
             } else {
                 data = JSON.parse(options.data);
             }
@@ -64,7 +62,12 @@ program
     .action(async (template_name, options) => {
         let data = [];
         if (options.data) {
-            data = JSON.parse(options.data);
+            if (options.data === '-') {
+                // Read from stdin
+                data = JSON.parse(fs.readFileSync(0, 'utf-8'));
+            } else {
+                data = JSON.parse(options.data);
+            }
         }
 
         const template = await getTemplate(template_name, data);
