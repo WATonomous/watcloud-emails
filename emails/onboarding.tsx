@@ -36,7 +36,7 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
             </Text>
             <Hr />
             <Section>
-                <Text>Here's a list of services that you have now access to:</Text>
+                <Text>Here's a list of services that you now have access to:</Text>
                 {accessInstructions}
                 <Text>
                     Access instructions for each service can be found in the <Link href="https://cloud.watonomous.ca/docs/services" style={{ color: "#1e90ff", textDecoration: "none" }}>Services</Link> documentation.
