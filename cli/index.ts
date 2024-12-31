@@ -34,7 +34,9 @@ program
         if (options.data) {
             if (options.data === '-') {
                 // Read from stdin
-                data = JSON.parse(fs.readFileSync(0, 'utf-8'));
+                const dataraw = fs.readFileSync(0, 'utf-8');
+                console.log("dataraw", dataraw);
+                data = JSON.parse(dataraw);
             } else {
                 data = JSON.parse(options.data);
             }
