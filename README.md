@@ -13,6 +13,8 @@ A collection of email templates used by [WATcloud](https://cloud.watonomous.ca/)
 
 ## Development
 
+### Emails
+
 ```sh
 npm ci
 npm run dev
@@ -20,10 +22,29 @@ npm run dev
 
 Open [localhost:3000](http://localhost:3000) with your browser to see email previews.
 
-Run the following to use the CLI:
+### CLI
 
 ```sh
+npm run build
 node ./dist/cli/index.js
+```
+
+#### Packaging the CLI
+
+```sh
+npm run build
+npm version --no-git-tag-version 0.0.0-dev
+npm pack --pack-destination .
+```
+
+A `watonomous-watcloud-emails-0.0.0-dev.tgz` file will be created in the current directory.
+Use it as follows:
+
+```sh
+npx watonomous-watcloud-emails-0.0.0-dev.tgz --help
+# or
+npm install -g watonomous-watcloud-emails-0.0.0-dev.tgz
+watcloud-emails --help
 ```
 
 ## Releasing
