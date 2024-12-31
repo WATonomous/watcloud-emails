@@ -18,7 +18,7 @@ type WATcloudOnboardingEmailProps = z.infer<typeof WATcloudOnboardingEmailProps>
 export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => {
     const { name, services } = WATcloudOnboardingEmailProps.parse(props);
 
-    const previewText = `Welcome to WATcloud! Your access has been updated.`;
+    const previewText = `Your WATcloud access has been granted/updated!`;
     const accessInstructions = (
         <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
             {services?.map((service) => (
@@ -31,14 +31,12 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                Welcome to WATcloud, WATonomous's compute cluster and infrastructure. We are excited to have you on board!
-            </Text>
-            <Text>
-                This email confirms that your access to WATcloud has been successfully updated.
+                Welcome to WATcloud, WATonomous's compute cluster and infrastructure.
+                You are receiving this email because you have been granted access to WATcloud, or your access has been updated.
             </Text>
             <Hr />
             <Section>
-                <Text>Here's a list of services that you have access to:</Text>
+                <Text>Here's a list of services that you have now access to:</Text>
                 {accessInstructions}
                 <Text>
                     Access instructions for each service can be found in the <Link href="https://cloud.watonomous.ca/docs/services" style={{ color: "#1e90ff", textDecoration: "none" }}>Services</Link> documentation.
