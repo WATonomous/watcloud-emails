@@ -44,15 +44,15 @@ export function Email(props: EmailProps) {
                 <span style={{ fontWeight: "bold" }}> {expiresOn}</span> (in {daysUntilExpiry} days).
             </Text>
             <Text>
-                Your last active term was <span style={{ fontWeight: "bold" }}> {lastActiveTerm}</span>. To renew your access, please update your selection for "Active Terms" at <Link href={renewalLink}>this link</Link>.
+                Your last active term was <span style={{ fontWeight: "bold" }}> {lastActiveTerm}</span>. To renew access, please submit <Link href={renewalLink}>this form</Link> with updated information about which terms you are active. You can find the setting under "General" {">"} "Active Terms" within the form.
             </Text>
             <Text>
                 You may receive additional reminders as the expiry date approaches.
-                If you would like to revoke your access earlier, please submit <Link href={expiryLink}>this prepopulated form</Link>.
+                To stop receiving notification emails, you can revoke your access earlier by submitting this <Link href={expiryLink}>prepopulated form</Link>.
             </Text>
 
             <Text>
-                On expiry, your services will be affected as follows:
+                Upon expiry, your services will be affected in the following ways:
             </Text>
             <Hr style={{ marginTop: "20px", marginBottom: "20px" }} />
             <Markdown markdownContainerStyles={{ color: "#333", fontSize: "14px", lineHeight: "24px" }}>{expiryDetails}</Markdown>
