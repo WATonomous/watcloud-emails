@@ -1,4 +1,5 @@
 import {
+    Heading,
     Hr,
     Link,
     Section,
@@ -32,31 +33,46 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                Welcome to WATcloud, WATonomous's compute cluster and infrastructure.
-                You are receiving this email because you have been granted access to WATcloud, or your access has been updated.
+                Welcome to WATcloud, WATonomous's compute cluster and infrastructure!
             </Text>
-            <Hr />
             <Text>
-                Your access is valid for the following terms:
+                You are receiving this email because you have been granted access to WATcloud, or your existing access has been updated.
             </Text>
-            <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
-                {props.activeTerms?.map((term) => (
-                    <li key={term}>{term}</li>
-                ))}
-            </ul>
             <Section>
-                <Text>Here's a list of services that you have access to:</Text>
+                <Heading as="h3">Your Access Details</Heading>
+                <Text>
+                    Our records indicate that you are, or have been, active during the following term(s):
+                </Text>
+                <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
+                    {props.activeTerms?.map((term) => (
+                        <li key={term}>{term}</li>
+                    ))}
+                </ul>
+            </Section>
+            <Section>
+                <Heading as="h3">Services You Have Access To</Heading>
+                <Text>
+                    You now have access to the following services:
+                </Text>
                 {accessInstructions}
                 <Text>
-                    Access instructions for each service can be found in the <Link href="https://cloud.watonomous.ca/docs/services" style={{ color: "#1e90ff", textDecoration: "none" }}>Services</Link> documentation.
+                    If you are an alumnus, you may retain access to some services beyond the active terms.
                 </Text>
             </Section>
-            <Hr />
+            <Section>
+                <Heading as="h3">Getting Started</Heading>
+                <Text>
+                    Access instructions for each service are available in the <Link href="https://cloud.watonomous.ca/docs/services" style={{ color: "#1e90ff", textDecoration: "none" }}>Services Documentation</Link>.
+                </Text>
+            </Section>
+            <Section>
+                <Heading as="h3">Questions or Assistance?</Heading>
+                <Text>
+                    If you have any questions or need assistance, feel free to reach out to your <Link href="https://cloud.watonomous.ca/docs/services#watcloud-contact" style={{ color: "#1e90ff", textDecoration: "none" }}>WATcloud contact</Link> or email the WATcloud team at <Link href={`mailto:infra-outreach@watonomous.ca`} style={{ color: "#1e90ff", textDecoration: "none" }}>infra-outreach@watonomous.ca</Link>.
+                </Text>
+            </Section>
             <Text>
-                If you have any questions, please reach out to your <Link href="https://cloud.watonomous.ca/docs/services#watcloud-contact" style={{ color: "#1e90ff", textDecoration: "none" }}>WATcloud contact</Link> or the WATcloud team at <Link href={`mailto:infra-outreach@watonomous.ca`} style={{ color: "#1e90ff", textDecoration: "none" }}>infra-outreach@watonomous.ca</Link>.
-            </Text>
-            <Text>
-                Vroom vroom,
+                Vroom vroom!
             </Text>
             <pre style={{ fontFamily: "Courier New, monospace" }}>
                 {dedent(String.raw`
