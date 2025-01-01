@@ -11,6 +11,7 @@ import { WATcloudEmail } from "./_common/watcloud-email";
 const WATcloudOnboardingEmailProps = z.object({
     name: z.string(),
     services: z.array(z.string()),
+    activeTerms: z.array(z.string()),
 });
 
 type WATcloudOnboardingEmailProps = z.infer<typeof WATcloudOnboardingEmailProps>;
@@ -35,8 +36,16 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
                 You are receiving this email because you have been granted access to WATcloud, or your access has been updated.
             </Text>
             <Hr />
+            <Text>
+                Your access is valid for the following terms:
+            </Text>
+            <ul style={{ fontSize: "14px", lineHeight: "24px" }}>
+                {props.activeTerms?.map((term) => (
+                    <li key={term}>{term}</li>
+                ))}
+            </ul>
             <Section>
-                <Text>Here's a list of services that you now have access to:</Text>
+                <Text>Here's a list of services that you have access to:</Text>
                 {accessInstructions}
                 <Text>
                     Access instructions for each service can be found in the <Link href="https://cloud.watonomous.ca/docs/services" style={{ color: "#1e90ff", textDecoration: "none" }}>Services</Link> documentation.
@@ -66,6 +75,10 @@ export const WATcloudOnboardingEmail = (props: WATcloudOnboardingEmailProps) => 
 WATcloudOnboardingEmail.PreviewProps = {
     name: "John Doe",
     services: ["Compute Cluster", "Discord", "Google Workspace"],
+    activeTerms: [
+        "2024 Fall (2024-09-01 to 2024-12-31)",
+        "2025 Winter (2025-01-01 to 2025-04-30)"
+    ],
 } as WATcloudOnboardingEmailProps;
 
 export default WATcloudOnboardingEmail;
