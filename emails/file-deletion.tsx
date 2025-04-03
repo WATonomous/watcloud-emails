@@ -18,7 +18,7 @@ type EmailProps = z.infer<typeof EmailProps>;
 const Email = (props: EmailProps) => {
     const { name, paths, daysForExpiry } = EmailProps.parse(props);
 
-    const previewText = `Some of your files in the WATcloud compute cluster have been deleted.`;
+    const previewText = `Some of your files in the WATcloud compute cluster have expired.`;
 
     const deletedPaths = (
         <div>
@@ -34,11 +34,11 @@ const Email = (props: EmailProps) => {
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days. We previously sent an email that you had files which met this criteria. Since they were not accessed by the given deadline, those files have been deleted.
+                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days. We previously sent an email that you had files which met this criteria. Since they were not accessed by the given deadline, those files will be deleted.
             </Text>
             <Hr />
             <Section>
-                <Text>The following paths were deleted:</Text>
+                <Text>The following paths will be deleted:</Text>
                 {deletedPaths}
             </Section>
             <Hr />
