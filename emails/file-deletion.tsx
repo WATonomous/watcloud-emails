@@ -34,7 +34,7 @@ const Email = (props: EmailProps) => {
         <WATcloudEmail previewText={previewText}>
             <Text>Hi {name},</Text>
             <Text>
-                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days. We previously sent an email that you had files which met this criteria. Since they were not accessed by the given deadline, those files will be deleted.
+                In an ongoing effort to keep WATcloud's file storage efficient and maintain optimal performance, we routinely clean up specific directories that haven't been accessed in the past {daysForExpiry} days. We previously sent an email that you had files which met this criteria. Since they were not accessed since then, those files are scheduled for deletion.
             </Text>
             <Hr />
             <Section>
