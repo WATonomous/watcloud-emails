@@ -1,4 +1,5 @@
 {
   "name": "@repo/ts-config",
-  "description": "Shared TypeScript configuration for the monorepo"
+  "description": "Shared TypeScript configuration for the monorepo",
+  "private": true
 }
