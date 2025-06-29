@@ -15,12 +15,12 @@
     },
     "dependencies": {
         "@react-email/components": "0.0.25",
-        "@repo/utils": "*",
-        "@watonomous/watcloud-email-templates": "*",
         "commander": "^12.1.0"
     },
     "devDependencies": {
         "@repo/ts-config": "*",
+        "@repo/utils": "*",
+        "@watonomous/watcloud-email-templates": "*",
         "tsup": "^8.5.0",
         "typescript": "^5.6.3"
     }
