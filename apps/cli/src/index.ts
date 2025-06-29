@@ -3,13 +3,17 @@
 import { render } from '@react-email/components';
 import { Command } from 'commander';
 import fs from 'fs';
-import { waitForAssets } from '../utils/watcloud-uri';
+import { waitForAssets } from '@repo/utils/watcloud-uri';
+import { Emails } from '@watonomous/watcloud-email-templates';
 
 const program = new Command();
 
 // Returns the email template with the given name and performs any necessary initialization.
 async function getTemplate(template_name: string, props_array: any[] = []) {
-    const mod = require(`../emails/${template_name}`);
+    const mod = Emails[template_name];
+    if (!mod) {
+        throw new Error(`Template ${template_name} not found`);
+    }
     if (mod.init) {
         await Promise.all(props_array.map(mod.init));
     }
@@ -89,12 +93,7 @@ program
     .command('list')
     .description('List all available templates')
     .action(() => {
-        const files = fs.readdirSync(__dirname + '/../emails');
-        const templates = files.map((file) => file.replace(/\.jsx?$|\.tsx?$/, ''));
-        console.log('Available templates:');
-        for (const template of templates) {
-            console.log(template);
-        }
+        console.log('Available templates: ' + Object.keys(Emails).join(','));
     });
 
 program.parse();

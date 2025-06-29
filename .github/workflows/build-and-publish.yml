@@ -24,8 +24,10 @@ jobs:
       run: npm ci
     - name: Build
       run: npm run build
-    - name: Create Package
+    - name: Create CLI Package
       run: |
+        cd apps/cli
+
         if npm version --no-git-tag-version from-git > /dev/null 2>&1; then
           echo "Using auto version based on git tag"
         else
@@ -38,10 +40,10 @@ jobs:
       uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
       with:
         name: package
-        path: out/
+        path: apps/cli/out/
     - name: Attach build artifact to release
       if: github.event_name == 'release'
       uses: softprops/action-gh-release@c062e08bd532815e2082a85e87e3ef29c3e6d191 # 2.0.8
       with:
-        files: out/*.tgz
+        files: apps/cli/out/*.tgz
     

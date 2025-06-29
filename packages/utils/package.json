@@ -1,0 +1,17 @@
+{
+    "name": "@repo/utils",
+    "private": true,
+    "exports": {
+        "./*": "./dist/*.js"
+    },
+    "scripts": {
+        "dev": "tsc -w",
+        "build": "tsc",
+        "check-types": "tsc --noEmit",
+        "clean": "rm -rf dist"
+    },
+    "devDependencies": {
+        "@repo/ts-config": "*",
+        "typescript": "^5.6.3"
+    }
+}
