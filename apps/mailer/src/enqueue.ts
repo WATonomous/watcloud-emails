@@ -59,6 +59,8 @@ module.exports = async function ({ request, response }: FissionContext, cb: Fiss
             text: await textPromise,
         };
     
+        // TODO: push to queue
+    
         response.status(200).json(payload);
     } catch (e) {
         console.error(e);
