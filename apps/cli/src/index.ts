@@ -93,7 +93,6 @@ program
     .command('list')
     .description('List all available templates')
     .action(() => {
-        console.log(Emails)
         console.log('Available templates: ' + Object.keys(Emails).join(','));
     });
 

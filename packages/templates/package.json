@@ -4,11 +4,13 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./dist/index.generated.js",
     "./*": "./dist/*.js"
   },
   "scripts": {
+    "gen-emails-index": "node scripts/gen-emails-index.js",
     "dev": "NODE_ENV=development concurrently \"email dev --dir src/emails\" \"tsc -w\"",
+    "prebuild": "npm run gen-emails-index",
     "build": "tsc",
     "prepack": "npm run build",
     "check-types": "tsc --noEmit",

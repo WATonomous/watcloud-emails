@@ -146,3 +146,5 @@ dist
 /.react-email
 # For storing development cache
 /src/emails/static/cache
+
+/src/*.generated.ts
