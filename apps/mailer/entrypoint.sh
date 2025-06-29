@@ -5,7 +5,7 @@ __port=${PORT:?Missing PORT environment variable}
 npm start -- --port $__port &
 
 echo "Waiting for server to start on port $__port..."
-sleep 2
+sleep 1
 
 echo "Specializing..."
 __res=$(curl --silent -X POST -H "Content-Type: application/json" -d @"/state.json" http://localhost:$__port/v2/specialize -w "\n%{http_code}\n")
