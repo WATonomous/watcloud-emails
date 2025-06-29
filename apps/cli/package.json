@@ -9,7 +9,6 @@
     "scripts": {
         "dev": "tsup --watch",
         "build": "tsup",
-        "prepack": "npm run build",
         "check-types": "tsc --noEmit",
         "clean": "rm -rf dist"
     },
