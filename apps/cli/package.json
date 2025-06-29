@@ -14,7 +14,7 @@
         "clean": "rm -rf dist"
     },
     "dependencies": {
-        "@react-email/components": "0.0.25",
+        "@react-email/components": "^0.1.1",
         "commander": "^12.1.0"
     },
     "devDependencies": {

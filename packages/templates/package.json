@@ -17,7 +17,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@react-email/components": "0.0.25",
+    "@react-email/components": "^0.1.1",
     "@repo/utils": "*",
     "dedent-js": "^1.0.1",
     "react": "^18.3.1",
