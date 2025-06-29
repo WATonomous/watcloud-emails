@@ -1,7 +1,6 @@
-import express from "express";
 import nodemailer from "nodemailer";
+import { FissionContext, FissionCallback } from "./utils";
 
-module.exports = async function (context: { request: express.Request, response: express.Response }, cb: unknown) {
-    context.response.status(200).json({
-    });
+module.exports = async function ({request, response}: FissionContext, cb: FissionCallback) {
+    response.status(200).json({});
 }
