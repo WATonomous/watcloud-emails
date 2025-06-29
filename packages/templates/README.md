@@ -8,7 +8,7 @@ A collection of email templates used by [WATcloud](https://cloud.watonomous.ca/)
 2. Run the following command
     ```sh
     VERSION=<version>
-    npx https://github.com/WATonomous/watcloud-emails/releases/download/v${VERSION}/watonomous-watcloud-emails-${VERSION}.tgz --help
+    npx https://github.com/WATonomous/watcloud-emails/releases/download/v${VERSION}/watonomous-watcloud-email-cli-${VERSION}.tgz --help
     ```
 
 ## Development
@@ -26,24 +26,26 @@ Open [localhost:3000](http://localhost:3000) with your browser to see email prev
 
 ```sh
 npm run build
-node ./dist/cli/index.js
+node ./apps/cli/dist/index.js
 ```
 
 #### Packaging the CLI
 
 ```sh
 npm run build
+
+cd apps/cli
 npm version --no-git-tag-version 0.0.0-dev
 npm pack --pack-destination .
 ```
 
-A `watonomous-watcloud-emails-0.0.0-dev.tgz` file will be created in the current directory.
+A `watonomous-watcloud-email-cli-0.0.0-dev.tgz` file will be created in the current directory.
 Use it as follows:
 
 ```sh
-npx watonomous-watcloud-emails-0.0.0-dev.tgz --help
+npx watonomous-watcloud-email-cli-0.0.0-dev.tgz --help
 # or
-npm install -g watonomous-watcloud-emails-0.0.0-dev.tgz
+npm install -g watonomous-watcloud-email-cli-0.0.0-dev.tgz
 watcloud-emails --help
 ```
 
