@@ -1,30 +1,17 @@
 {
-  "name": "@watonomous/watcloud-emails",
-  "bin": {
-    "watcloud-emails": "dist/cli/index.js"
-  },
-  "files": [
-    "dist"
-  ],
+  "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development concurrently --kill-others \"email dev\" \"tsc -w\"",
-    "build": "tsc",
-    "prepack": "npm run build"
-  },
-  "dependencies": {
-    "@react-email/components": "0.0.25",
-    "commander": "^12.1.0",
-    "dedent-js": "^1.0.1",
-    "react": "^18.3.1",
-    "react-dom": "18.3.1",
-    "react-email": "3.0.1",
-    "zod": "^3.23.8"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "clean": "turbo clean",
+    "clean:deep": "turbo clean && rm -rf .turbo apps/*/.turbo packages/*/.turbo"
   },
   "devDependencies": {
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "18.3.0",
-    "concurrently": "^9.0.1",
-    "cross-env": "^7.0.3",
-    "typescript": "^5.6.3"
-  }
+    "turbo": "^2.5.4"
+  },
+  "packageManager": "npm@10.9.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
