@@ -1,0 +1,35 @@
+services:
+  enqueue:
+    build:
+      context: .
+      target: enqueue
+    environment:
+      - PORT=8888
+    ports:
+      - "8888:8888"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./dist
+          target: /deploypkg
+
+  send:
+    build:
+      context: .
+      target: send
+    environment:
+      - PORT=8889
+    env_file:
+      - send.env
+    ports:
+      - "8889:8889"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./dist
+          target: /deploypkg
+  
+  smtp-server:
+    image: rnwood/smtp4dev:3.8.7-ci20250525101@sha256:729d01654329fb80379935bb8b9f1e13146851c163a44577ef380c7e3a939e3e
+    ports:
+      - "8000:80"
