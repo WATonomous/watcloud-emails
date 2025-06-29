@@ -1,0 +1,28 @@
+services:
+  enqueue:
+    build:
+      context: .
+      target: enqueue
+    environment:
+      - PORT=8888
+    ports:
+      - "8888:8888"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./dist
+          target: /deploypkg
+
+  send:
+    build:
+      context: .
+      target: send
+    environment:
+      - PORT=8889
+    ports:
+      - "8889:8889"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./dist
+          target: /deploypkg
