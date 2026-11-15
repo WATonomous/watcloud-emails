@@ -13,11 +13,11 @@
         "clean": "rm -rf dist"
     },
     "devDependencies": {
-        "@react-email/components": "^0.1.1",
-        "commander": "^12.1.0",
         "@repo/ts-config": "*",
         "@repo/utils": "*",
         "@watonomous/watcloud-email-templates": "*",
+        "commander": "^12.1.0",
+        "react-email": "^6.11.13",
         "tsup": "^8.5.0",
         "typescript": "^5.6.3"
     }
