@@ -5,7 +5,7 @@ import {
     Link,
     Markdown,
     Text
-} from "@react-email/components";
+} from "react-email";
 import { z } from "zod";
 import { WATcloudEmail } from "./_common/watcloud-email";
 

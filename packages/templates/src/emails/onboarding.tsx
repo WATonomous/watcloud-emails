@@ -4,7 +4,7 @@ import {
     Link,
     Section,
     Text
-} from "@react-email/components";
+} from "react-email";
 import dedent from "dedent-js";
 import { z } from "zod";
 import { WATcloudEmail } from "./_common/watcloud-email";
