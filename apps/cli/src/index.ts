@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { render } from '@react-email/components';
+import { render } from 'react-email';
 import { Command } from 'commander';
 import fs from 'fs';
 import { waitForAssets } from '@repo/utils/watcloud-uri';

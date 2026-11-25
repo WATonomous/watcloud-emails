@@ -5,7 +5,7 @@ import {
     Html,
     Img,
     Preview
-} from "@react-email/components";
+} from "react-email";
 import { getAsset, registerAsset, WATcloudURI } from "@repo/utils/watcloud-uri";
 
 registerAsset('watcloud-logo', new WATcloudURI("watcloud://v1/sha256:393767e36d5387815c15d11c506c3c820de5db41723ffc062751673621dedb15?name=1024x512%20black%401x.png"))
